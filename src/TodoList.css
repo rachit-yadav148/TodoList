@@ -50,16 +50,40 @@
   font-size: 16px;
 }
 
-.todo-container li button {
-  background-color: #ff4d4f;
+
+.todo-container li .done-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
   padding: 4px 10px;
   font-size: 14px;
-  border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  margin-left: 5px;
 }
 
-.todo-container li button:hover {
+.todo-container li .done-btn:hover {
+  background-color: #388e3c;
+}
+
+.todo-container li .completed-task {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: 5px;
+}
+
+.todo-container li .completed-task:hover {
   background-color: #e60000;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
 }

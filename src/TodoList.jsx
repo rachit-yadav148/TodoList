@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./TodoList.css"; 
+import "./TodoList.css";
 
 export default function Todolist() {
     let [todos, setTodos] = useState([]);
@@ -7,7 +7,7 @@ export default function Todolist() {
 
     let addNewTask = () => {
         if (newTodo.trim() === "") return;
-        setTodos([...todos, newTodo]);
+        setTodos([...todos, { text: newTodo, completed: false }]);
         setNewTodo("");
     };
 
@@ -17,6 +17,16 @@ export default function Todolist() {
 
     let deleteTodo = (index) => {
         let updatedTodos = todos.filter((_, i) => i !== index);
+        setTodos(updatedTodos);
+    };
+
+    let toggleCompletion = (index) => {
+        let updatedTodos = todos.map((todo, i) => {
+            if (i === index) {
+                return { ...todo, completed: !todo.completed };
+            }
+            return todo;
+        });
         setTodos(updatedTodos);
     };
 
@@ -33,7 +43,10 @@ export default function Todolist() {
             <ul>
                 {todos.map((todo, index) => (
                     <li key={index}>
-                        {todo}
+                        <span className={todo.completed ? "completed" : ""}>
+                            {todo.text}
+                        </span>
+                        <button  className="done-btn" onClick={() => toggleCompletion(index)}>Done</button>
                         <button onClick={() => deleteTodo(index)}>❌</button>
                     </li>
                 ))}
